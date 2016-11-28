@@ -1,0 +1,19 @@
+import random
+result = 0
+list=[]
+print('<<<<< GAME STARTS! >>>>> ')
+guess = input('Big or Small:')
+print('<<<<< ROLE THE DICE! >>>>> ')
+list.append(random.randrange(1,7))
+list.append(random.randrange(1,7))
+list.append(random.randrange(1,7))
+for i in list:
+    result = result + i
+if result<11:
+    result = 'Small'
+else:
+    result = 'Big'
+if result == guess:
+    print('The points are {} , You Win!'.format(list))
+else:
+    print('The points are {} , You Lose!'.format(list))
