@@ -1,0 +1,6 @@
+n = 1
+while n <11:
+    path = '/Users/MATEG/Desktop/'
+    file = open(path + str(n) + '.txt','w')
+    file.close()
+    n = n+1
