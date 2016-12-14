@@ -1,0 +1,29 @@
+from bs4 import BeautifulSoup
+
+path = './index.html'
+with open(path,'r') as wb_data:
+    content = wb_data.read()
+
+    soup = BeautifulSoup(content,"html5lib")
+
+    titles = soup.select("body > div > div > div.col-md-9 > div > div > div > div.caption > h4 > a")
+    images = soup.select("body > div > div > div.col-md-9 > div > div > div > img")
+    reviews = soup.select("body > div > div > div.col-md-9 > div > div > div > div.ratings > p.pull-right")
+    prices = soup.select("body > div > div > div.col-md-9 > div > div > div > div.caption > h4.pull-right")
+    stars = soup.select("body > div > div > div.col-md-9 > div > div > div > div.ratings > p > span")
+
+    for title,image,review,price,star in zip(titles,images, reviews,prices, stars):
+        title_content = title.get_text()
+        review_content = review.get_text()
+        price_content = price.get_text()
+        image_content = image.get("src")
+        stars_count = len(star)
+
+        data = {
+            "title":title_content,
+            "review":review_content,
+            "image":image_content,
+            "price":price_content,
+            "star":stars_count
+        }
+        print(data)
